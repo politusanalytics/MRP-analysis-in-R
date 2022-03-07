@@ -14,7 +14,7 @@ library(readxl)
 
 #Two input datasets
 user_data <- read_excel("married data from twitter.xlsx")
-pop_data <- read_excel("pop data tüik as matrix.xlsx")
+pop_data <- read_excel("pop data tÃ¼ik as matrix.xlsx")
 
 model <- glmer(dep_var ~ var_context + (1|gender) + (1|age) + (1|var3) + (1|var_geo), data= user_data, family=binomial("probit"))
 
