@@ -30,16 +30,16 @@ re.var_geo <- ranef(model)$var_geo[[1]]
 N_age <-
 N_3 <- 
 N_geo <-
-
-#Calculate total numbers of combinations.:
+  
+  #Calculate total numbers of combinations.:
 N_cat <- 2 * N_age * N_3
 N_total <- N_cat * N_geo
 
 #Repeat the realizations such that all combinations are given, in the same order with Table 1 (in the Summary document):
-gender.re <- rep(re.gender,2*N_3)
+gender.re <- rep(re.gender,N_age*N_3)
 age.re <- rep(kronecker(re.age,c(1,1)), N_3)
-var3.re <- kronecker(re.var3,rep(1, N_1*2))
-ind.re <- rowSums(cbind(re.gender, re.age, re.var3))
+var3.re <- kronecker(re.var3,rep(1, N_age*2))
+ind.re <- rowSums(cbind(gender.re, age.re, var3.re))
 ind.re <- ind.re + fixef(model)[1]
 beta1 <- fixef(model)[2]
 
@@ -65,9 +65,9 @@ list_of_averages_for_units <- rep(NA,N_geo)
 for (i in 1:N_geo){
   a1 <- ((i-1)*N_cat)+1
   a2 <- a1 + N_cat-1
-  p2 <- pnorm(y.lat[a1:a2])
+  p2 <- p[a1:a2]
   a <- pop_data[,i]
-  list_of_averages_for_units[i] <-  sum(p*a)/sum(a)
+  list_of_averages_for_units[i] <-  sum(p2*a)/sum(a)
 }
 
 #The two outputs are total_average and list_of_averages_for_units!
