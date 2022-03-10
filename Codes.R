@@ -5,12 +5,14 @@ install.packages("lme4")
 install.packages("arm")
 install.packages("extrafont")
 install.packages("readxl")
+install.packages("dplyr")
 
 library(foreign)
 library(lme4)
 library(arm)
 library(extrafont)
 library(readxl)
+library(dplyr)
 
 #Two input datasets:
 user_data <- read_excel("")
