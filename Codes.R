@@ -14,16 +14,19 @@ library(extrafont)
 library(readxl)
 library(dplyr)
 
-#Two input datasets:
-user_data <- read_excel("")
-pop_data <- read_excel("")
+#Set working directory:
+setwd("C:/...")
+
+#Read two input datasets:
+user_data <- read_excel("...")
+pop_data <- read_excel("...")
 
 #We consider gender has two subcategories. The numbers of subcategories for other variables are three numeric inputs of the model.
-#Three input parameters:
-N_age <-
-N_3 <- 
-N_geo <-
-
+#Read three input parameters:
+N_age <- ...
+N_3 <- ...
+N_geo <- ...
+  
 #Multi-level regression model:
 model <- glmer(dep_var ~ var_context + (1|gender) + (1|age) + (1|var3) + (1|var_geo), data= user_data, family=binomial("probit"))
 
@@ -32,8 +35,8 @@ re.gender <- ranef(model)$gender[[1]]
 re.age <- ranef(model)$age[[1]]
 re.var3 <- ranef(model)$var3[[1]]
 re.var_geo <- ranef(model)$var_geo[[1]]
-  
-  #Calculate total numbers of combinations.:
+
+#Calculate total numbers of combinations.:
 N_cat <- 2 * N_age * N_3
 N_total <- N_cat * N_geo
 
@@ -52,7 +55,7 @@ var_context <- user_data %>% group_by(var_geo) %>% summarise(v_c=mean(var_contex
 y.lat <- rep(NA,N_total)
 for (i in 1:N_geo){
   a <- ((i-1)*N_cat)+1
-  b <- a + Ncat-1
+  b <- a + N_cat-1
   y.lat[a:b] <- ind.re + beta1 * var_context[i] + re.var_geo[i]
 }
 
