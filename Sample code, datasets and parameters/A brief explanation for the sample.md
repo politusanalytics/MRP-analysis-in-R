@@ -1,8 +1,6 @@
 For the sample datasets, we generated random numbers assuming that the total sample size of user data is 500.
 
-Further we considered that 
-
-•	the age variable has 3 categories (from 0 to 2), var3 variable has 4 categories  (from 0 to 3), and we have 7 geographic units (from 1 to 7).
+Further we considered that the age variable has 3 categories (from 0 to 2), var3 variable has 4 categories  (from 0 to 3), and we have 7 geographic units (from 1 to 7).
 
 In other words: 
 
