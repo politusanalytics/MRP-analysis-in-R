@@ -4,4 +4,4 @@ The methodological framework for the analysis here is borrowed from Leemann and 
 
 The model will take two datasets (as a user/individual level and an administrational population data) and three parameters (as the number of subcategories of the variables) as inputs and extracts a list that includes prediction for each geographical unit, and a number that shows aggregate average.
 
-You may find further  technical details in the "Summary" document, and a brief theoretical explantion in the "Why does one need MRP?" document. We also share sample datasets, parameters, and an R script to run the MRP analysis for those. 
+You may find further  technical details in the "Summary" document that mainly describes the structure of datasets, and a brief theoretical explantion in the "Why does one need MRP?" document. We also share sample datasets, parameters, and an R script to run the MRP analysis for those.
