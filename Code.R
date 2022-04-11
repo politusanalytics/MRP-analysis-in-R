@@ -1,11 +1,11 @@
 #A Dynamic Multilevel Regression and Post-Stratification (MRP) Model
 
-install.packages("foreign")
-install.packages("lme4")
-install.packages("arm")
-install.packages("extrafont")
-install.packages("readxl")
-install.packages("dplyr")
+install.packages("foreign", repos = "http://cran.us.r-project.org")
+install.packages("lme4", repos = "http://cran.us.r-project.org")
+install.packages("arm", repos = "http://cran.us.r-project.org")
+install.packages("extrafont", repos = "http://cran.us.r-project.org")
+install.packages("readxl", repos = "http://cran.us.r-project.org")
+install.packages("dplyr", repos = "http://cran.us.r-project.org")
 
 library(foreign)
 library(lme4)
@@ -15,17 +15,17 @@ library(readxl)
 library(dplyr)
 
 #Set working directory:
-setwd("C:/...")
+#setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 
 #Read two input datasets:
-user_data <- read_excel("...")
-pop_data <- read_excel("...")
+user_data <- read_excel("data/sample_user_data.xlsx")
+pop_data <- read_excel("data/sample_pop_data.xlsx")
 
 #We consider gender has two subcategories. The numbers of subcategories for other variables are three numeric inputs of the model.
 #Read three input parameters:
-N_age <- ...
-N_3 <- ...
-N_geo <- ...
+N_age <- length(unique(user_data$age))
+N_3 <- length(unique(user_data$var3))
+N_geo <- length(unique(user_data$var_geo))
   
 #Multi-level regression model:
 model <- glmer(dep_var ~ var_context + (1|gender) + (1|age) + (1|var3) + (1|var_geo), data= user_data, family=binomial("probit"))
@@ -76,3 +76,5 @@ for (i in 1:N_geo){
 }
 
 #The two outputs are total_average and list_of_averages_for_units!
+print(total_average)
+print(list_of_averages_for_units)
