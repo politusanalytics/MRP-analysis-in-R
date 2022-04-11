@@ -6,20 +6,17 @@ model <- glmer(dep_var ~ var_context + (1|gender) + (1|age) + (1|var3) + (1|var_
                data= user_data, family=binomial("probit"))
 ```
 
-The model will take two datasets (as a user/individual level and an administrational population data) and three parameters (as the number of subcategories of the variables) as inputs and extracts a list that includes prediction for each geographical unit, and a number that shows aggregate average.
+The model will take two datasets (one user/individual level and one administrational population data) as inputs and extracts a list that includes prediction for each geographical unit, and a number that shows aggregate average.
 
 It requires following packages in R:
 ```
 install.packages(c("foreign", "lme4", "arm", "extrafont", "readxl", "dplyr"))
 ```
 
-and takes following datasets and parameters as inputs:
+and takes following datasets as inputs:
 ```
 user_data <- read_excel("...")
 pop_data <- read_excel("...")
-N_age <- ...
-N_3 <- ...
-N_geo <- ...
 ```
 
 You may find further  technical details in the "Summary" document that mainly describes the structure of datasets, and a brief theoretical explantion in the "Why does one need MRP?" document. We also share sample datasets and an R script to run the MRP analysis for those. We run the sample code in R version 4.1.2.
