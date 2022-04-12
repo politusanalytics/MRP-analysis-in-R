@@ -14,15 +14,14 @@ library(extrafont)
 library(readxl)
 library(dplyr)
 
-#Set working directory:
+#Set working directory if necessary:
 #setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 
 #Read two input datasets:
 user_data <- read_excel("data/sample_user_data.xlsx")
 pop_data <- read_excel("data/sample_pop_data.xlsx")
 
-#We consider gender has two subcategories. The numbers of subcategories for other variables are three numeric inputs of the model.
-#Read three input parameters:
+#We consider gender has two subcategories. The numbers of subcategories for other variables are calculated as follows:
 N_age <- length(unique(user_data$age))
 N_3 <- length(unique(user_data$var3))
 N_geo <- length(unique(user_data$var_geo))
