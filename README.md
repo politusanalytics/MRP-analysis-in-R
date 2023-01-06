@@ -8,6 +8,15 @@ model <- glmer(dep_var ~ var_context + (1|gender) + (1|age) + (1|var3) + (1|var_
 
 The model will take two datasets (one user/individual level and one administrational population data) as inputs and extracts a list that includes prediction for each geographical unit, and a number that shows aggregate average.
 
+As a secondary model, we also share another MRP analysis without the context level factor, and with three weighting variables (age, gender, location), instead of four.
+
+Its formula:
+```
+model <- glmer(dep_var ~  (1|gender) + (1|age) + (1|var_geo), 
+               data= user_data, family=binomial("probit"))
+```
+
+
 It requires following packages in R:
 ```
 install.packages(c("foreign", "lme4", "arm", "extrafont", "readxl", "dplyr"))
