@@ -15,7 +15,7 @@ model <- glmer(dep_var ~  (1|gender) + (1|age) + (1|var_geo), data= user_data, f
 ```
 
 
-It requires following packages in R:
+The MRP requires following packages in R:
 ```
 install.packages(c("foreign", "lme4", "arm", "extrafont", "readxl", "dplyr"))
 ```
@@ -26,4 +26,4 @@ user_data <- read_excel("...")
 pop_data <- read_excel("...")
 ```
 
-You may find further  technical details in the "Summary" document that mainly describes the structure of datasets, and a brief theoretical explantion in the "Why does one need MRP?" document. We also share sample datasets and an R script to run the MRP analysis for those. We run the sample code in R version 4.1.2.
+You may find further  technical details in the "Summary" document that mainly describes the structure of datasets, and a brief theoretical explantion in the "Why does one need MRP?" document. We also share sample datasets and an R script to run the MRP analysis for those. We run the sample code in R version 4.1.2. Sample datasets and R-code for the smaller MRP analysis (with the three variables) is shared in another folder, named "MRP with three weighting variables."
