@@ -18,8 +18,8 @@ library(dplyr)
 #setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 
 #Read two input datasets:
-user_data <- read_excel("data/sample_user_data.xlsx")
-pop_data <- read_excel("data/sample_pop_data.xlsx")
+user_data <- read_excel("sample_user_data.xlsx")
+pop_data <- read_excel("sample_pop_data.xlsx")
 
 #We consider gender has two subcategories. The numbers of subcategories for other variables are calculated as follows:
 N_age <- length(unique(user_data$age))
@@ -41,7 +41,7 @@ N_total <- N_cat * N_geo
 gender.re <- rep(re.gender,N_age)
 age.re <- rep(kronecker(re.age,c(1,1)), 1)
 ind.re <- rowSums(cbind(gender.re, age.re))
-ind.re <- ind.re + fixef(model)[1]
+ind.re <- ind.re + fixef(model)
 
 #Create a vector of length N_cat * N_geo:
 y.lat <- rep(NA,N_total)
@@ -53,3 +53,4 @@ for (i in 1:N_geo){
 
 #Transform those to predicted probabilities:
 p <- pnorm(y.lat)
+p
