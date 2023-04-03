@@ -8,7 +8,7 @@ model <- glmer(dep_var ~ var_context + (1|gender) + (1|age) + (1|var3) + (1|var_
 
 The model will take two datasets (one user/individual level and one administrational population data) as inputs and extracts a list that includes prediction for each geographical unit, and a number that shows aggregate average.
 
-As a secondary model, we also share another MRP analysis without the context level factor, and with three weighting variables (age, gender, location), instead of four.
+As a secondary model, we also share another MRP analysis without the context level factor, and with three weighting variables (age, gender, location), instead of four. It extracts a single list as an output, called "p", which presents predicted results for combinations of predictor variables' subcategories. The structure of output is shown in an excel file in the folder, named "output structure."
 
 Its formula:
 ```
