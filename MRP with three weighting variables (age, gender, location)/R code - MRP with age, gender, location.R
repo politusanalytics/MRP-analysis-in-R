@@ -17,16 +17,15 @@ library(dplyr)
 #Set working directory if necessary:
 #setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 
-#Read two input datasets:
-user_data <- read_excel("sample_user_data.xlsx")
-pop_data <- read_excel("sample_pop_data.xlsx")
+#Read input dataset:
+user_data <- read.csv(file = "sample_user_data.csv")
 
 #We consider gender has two subcategories. The numbers of subcategories for other variables are calculated as follows:
 N_age <- length(unique(user_data$age))
 N_geo <- length(unique(user_data$var_geo))
 
 #Multi-level regression model:
-model <- glmer(dep_var ~ (1|gender) + (1|age) + (1|var_geo), data= user_data, family=binomial("probit"))
+model <- glmer(dep_var ~ (1|gender) + (1|age) + (1|var_geo), data=user_data, family=binomial("probit"))
 
 #Realizations of the random effects:
 re.gender <- ranef(model)$gender[[1]]
@@ -48,9 +47,22 @@ y.lat <- rep(NA,N_total)
 for (i in 1:N_geo){
   a <- ((i-1)*N_cat)+1
   b <- a + N_cat-1
-  y.lat[a:b] <- ind.re +  re.var_geo[i]
+  y.lat[a:b] <- ind.re + re.var_geo[i]
 }
 
 #Transform those to predicted probabilities:
 p <- pnorm(y.lat)
-p
+
+#Create an output data
+gender <- rep(c('male','female'), N_geo*N_age)
+age <- rep(kronecker(c('18'=0,'19-29'=1,'30-39'=2,'40'=3), c(1,1)), N_geo)
+var_geo <- rep(kronecker(1:N_geo, c(1,1,1,1,1,1,1,1)), 1)
+
+output <- list(var_geo = var_geo,
+               age = age,
+               gender = gender,
+               dep_var = p)
+
+#Write the data as csv
+write.csv(output, file='output.csv')
+
